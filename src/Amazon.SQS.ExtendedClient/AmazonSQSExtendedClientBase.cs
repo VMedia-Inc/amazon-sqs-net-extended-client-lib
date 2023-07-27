@@ -457,6 +457,21 @@ namespace Amazon.SQS.ExtendedClient
             return amazonSqsToBeExtended.UntagQueueAsync(request, cancellationToken);
         }
 
+        public Task<CancelMessageMoveTaskResponse> CancelMessageMoveTaskAsync(CancelMessageMoveTaskRequest request, CancellationToken cancellationToken = default)
+        {
+            return amazonSqsToBeExtended.CancelMessageMoveTaskAsync(request, cancellationToken);
+        }
+
+        public Task<ListMessageMoveTasksResponse> ListMessageMoveTasksAsync(ListMessageMoveTasksRequest request, CancellationToken cancellationToken = default)
+        {
+            return amazonSqsToBeExtended.ListMessageMoveTasksAsync(request, cancellationToken);
+        }
+
+        public Task<StartMessageMoveTaskResponse> StartMessageMoveTaskAsync(StartMessageMoveTaskRequest request, CancellationToken cancellationToken = default)
+        {
+            return amazonSqsToBeExtended.StartMessageMoveTaskAsync(request, cancellationToken);
+        }
+
         public IClientConfig Config => amazonSqsToBeExtended.Config;
 
         public ISQSPaginatorFactory Paginators => amazonSqsToBeExtended.Paginators;
