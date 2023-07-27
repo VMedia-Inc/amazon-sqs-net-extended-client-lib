@@ -5,10 +5,6 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'net45'">
-    <DefineConstants>NET45</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
     <PackageReference Include="Moq" Version="4.7.142" />

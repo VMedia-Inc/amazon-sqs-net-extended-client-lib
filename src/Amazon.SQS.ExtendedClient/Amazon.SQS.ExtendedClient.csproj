@@ -16,10 +16,6 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFrameworkVersion)' == 'net45'">
-    <DefineConstants>NET45</DefineConstants>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AWSSDK.Core" Version="3.7.200.5" />
     <PackageReference Include="AWSSDK.S3" Version="3.7.201.3" />

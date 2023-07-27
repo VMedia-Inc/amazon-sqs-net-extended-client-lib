@@ -51,48 +51,5 @@ namespace Amazon.SQS.ExtendedClient.Tests
                     It.IsAny<CancellationToken>()),
                 Times.Once);
         }
-
-#if NET45
-
-        [Test]
-        public void Short_messages()
-        {
-            var entries = new List<ChangeMessageVisibilityBatchRequestEntry>
-            {
-                new ChangeMessageVisibilityBatchRequestEntry("100", Constants.HandleTail)
-                {
-                    VisibilityTimeout = VisibilityTimeout
-                }
-            };
-            
-            client.ChangeMessageVisibilityBatch(new ChangeMessageVisibilityBatchRequest(SQS_QUEUE_NAME, entries));
-            sqsMock.Verify(x => x.ChangeMessageVisibilityBatch(It.Is<ChangeMessageVisibilityBatchRequest>(r =>
-                        r.Entries[0].VisibilityTimeout == VisibilityTimeout &&
-                        r.QueueUrl == SQS_QUEUE_NAME &&
-                        r.Entries[0].ReceiptHandle == Constants.HandleTail)),
-                Times.Once);
-        }
-        
-        [Test]
-        public void Long_messages()
-        {
-            var s3Key = Guid.NewGuid().ToString("N");
-            var handle = GenerateReceiptHandle(S3_BUCKET_NAME, s3Key, Constants.HandleTail);
-            var entries = new List<ChangeMessageVisibilityBatchRequestEntry>
-            {
-                new ChangeMessageVisibilityBatchRequestEntry("100", handle)
-                {
-                    VisibilityTimeout = VisibilityTimeout
-                }
-            };
-            
-            client.ChangeMessageVisibilityBatch(new ChangeMessageVisibilityBatchRequest(SQS_QUEUE_NAME, entries));
-            sqsMock.Verify(x => x.ChangeMessageVisibilityBatch(It.Is<ChangeMessageVisibilityBatchRequest>(r =>
-                        r.Entries[0].VisibilityTimeout == VisibilityTimeout &&
-                        r.QueueUrl == SQS_QUEUE_NAME &&
-                        r.Entries[0].ReceiptHandle == Constants.HandleTail)),
-                Times.Once);
-        }
-#endif
     }
 }
